@@ -24,3 +24,6 @@ jobs:
             
             - name: Build Project
               run: mvn clean package
+            
+            - name: Build Docker Image
+              run: docker build -t auth-lab .
