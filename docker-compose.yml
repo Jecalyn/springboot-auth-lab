@@ -1,0 +1,29 @@
+services:
+    postgres:
+        image: postgres:17.5
+        container_name: auth-lab-postgres
+        environment: 
+            POSTGRES_DB: ${POSTGRES_DB}
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        ports: 
+         - "5434:5432"
+        
+        volumes: 
+         - ./docker:/docker-entrypoint-initdb.d
+    
+    auth-lab:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: auth-lab
+        ports: 
+         - "8080:8081"
+        environment:
+            DB_USERNAME: ${DB_USERNAME}
+            DB_PASSWORD: ${DB_PASSWORD}
+            JWT_SECRET: ${JWT_SECRET}
+    
+        depends_on: 
+         - postgres
+        
