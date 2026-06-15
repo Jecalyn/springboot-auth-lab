@@ -8,6 +8,6 @@ public class HealthController {
 
     @GetMapping("/health")
     public String health() {
-        return "UP v2";
+        return "UP v2ss";
     }
 }
