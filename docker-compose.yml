@@ -13,9 +13,7 @@ services:
          - ./docker:/docker-entrypoint-initdb.d
     
     auth-lab:
-        build:
-            context: .
-            dockerfile: Dockerfile
+        image: jecalyn/auth-lab:latest
         container_name: auth-lab
         ports: 
          - "8080:8081"
